@@ -49,4 +49,8 @@ variable "rgname" {
   type = string
   default = "example-rg"
 }
+```
+
+メモ:
+  `variable.tf `は「こんな変数を使いたいです。」的な宣言を行う場所（デフォルト値も設定できる）。　`.tfvars` は「変数にはこの値を渡したいです。」的な変数に値を指定する場所。
 
