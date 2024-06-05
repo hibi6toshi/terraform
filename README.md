@@ -54,3 +54,21 @@ variable "rgname" {
 メモ:
   `variable.tf `は「こんな変数を使いたいです。」的な宣言を行う場所（デフォルト値も設定できる）。　`.tfvars` は「変数にはこの値を渡したいです。」的な変数に値を指定する場所。
 
+## Terraform のデータソーズを理解する
+Terraformにおけるdata sourceは、既存のリソースや外部の情報源からデータを読み取るための機能です。
+
+AWSでのTerraformデータソースの例
+既存のAWS VPCにサブネットを作成したい場合。
+```
+variable "vpc_id" {}
+
+data "aws_vpc" "example" {
+  id = var.vpc_id
+}
+
+resource "aws_subnet" "example" {
+  vpc_id = data.aws_vpc.example.id
+  availability_zone = "us-west-2a"
+  cidr_block = cidrsubnet(data.aws_vpc.example.cider_block, 4, 1)
+}
+```
